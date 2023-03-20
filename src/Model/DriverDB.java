@@ -13,7 +13,8 @@ public class DriverDB {
     public void delivered(int id) throws SQLException {
         stmt.execute("START TRANSACTION");
         boolean r1=stmt.execute("UPDATE DELIVERY SET STATUS='delivered' WHERE DRIVER_ID="+id);
-        boolean r2=stmt.execute("UPDATE DRIVER_DETAILS SET AVAILABLE='yes',CURRENT_CITY=(SELECT DESTINATION_CITY FROM DELIVERY WHERE DRIVER_ID="+id+" ORDER BY ENTRY_NO DESC LIMIT 1) WHERE ID="+id);
+        boolean r2=stmt.execute("UPDATE DRIVER_DETAILS SET AVAILABLE='yes',CURRENT_CITY=IFNULL((SELECT DESTINATION_CITY FROM DELIVERY WHERE DRIVER_ID="+id+" ORDER BY ENTRY_NO DESC LIMIT 1)," +
+                " (SELECT CITY FROM EMPLOYEE WHERE ID="+id+")) WHERE ID="+id);
         ResultSet rs=stmt.executeQuery("SELECT DESTINATION_CITY,SV_ID FROM DELIVERY WHERE DRIVER_ID="+id+" ORDER BY ENTRY_NO DESC LIMIT 1");
         if(rs.next()) {
             int s_id = rs.getInt("sv_id");

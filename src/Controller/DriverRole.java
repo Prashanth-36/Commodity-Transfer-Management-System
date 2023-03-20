@@ -15,7 +15,7 @@ public class DriverRole extends User {
     public void controller() throws SQLException {
         while (true) {
             System.out.println();
-            System.out.println("1.View Orders\n2.Delivery Completed\n5.Log out");
+            System.out.println("1.View Orders\n2.Delivery Completed\n3.Log out");
             Scanner sc = new Scanner(System.in);
             int ch = sc.nextInt();
             switch (ch) {

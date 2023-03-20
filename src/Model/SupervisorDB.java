@@ -42,7 +42,7 @@ public class SupervisorDB {
         if(r>0) System.out.println("Driver removed successfully");
     }
     public ResultSet getDriver(int id) throws SQLException {
-        ResultSet r=stmt.executeQuery("SELECT E.*, L.LICENSE_NO, L.AVAILABLE, L.CURRENT_CITY FROM EMPLOYEE E INNER JOIN DRIVER_DETAILS L ON E.ID=L.ID WHERE ROLE='driver' AND SUPERVISOR_ID="+id);
+        ResultSet r=stmt.executeQuery("SELECT E.ID, NAME, CITY, NUMBER, SALARY, USERNAME, LICENSE_NO, AVAILABLE, CURRENT_CITY FROM EMPLOYEE E INNER JOIN DRIVER_DETAILS L ON E.ID=L.ID WHERE ROLE='driver' AND SUPERVISOR_ID="+id);
         System.out.println("********************************************************************DRIVERS*********************************************************************");
         return r;
     }

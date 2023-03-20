@@ -35,7 +35,7 @@ public class ManagerDB extends SupervisorDB{
 
     public ResultSet getDriver() throws SQLException {
         ResultSet r=stmt.executeQuery("SELECT E.ID, NAME, CITY, NUMBER, SALARY, USERNAME, LICENSE_NO, AVAILABLE, CURRENT_CITY, SUPERVISOR_ID FROM EMPLOYEE E INNER JOIN DRIVER_DETAILS D ON E.ID=D.ID WHERE ROLE='driver'");
-        System.out.println("*********************************************************************DRIVERS*********************************************************************");
+        System.out.println("****************************************************************************DRIVERS****************************************************************************");
         return r;
     }
     public ResultSet generateReport() throws SQLException {
