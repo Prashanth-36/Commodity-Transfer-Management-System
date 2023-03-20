@@ -88,7 +88,6 @@ public class View {
         System.out.print("Enter driver id: ");
         int id=sc.nextInt();
         sc.nextLine();
-//        printResultSet(destinations);
         ArrayList<String> dest=new ArrayList<>();
         System.out.println("   DESTINATIONS|");
         while (destinations.next()){
@@ -103,7 +102,6 @@ public class View {
             System.out.print("Enter Destination id: ");
             destId=sc.nextInt();
         }
-//        String destination=sc.nextLine();
         return new Delivery(id,dest.get(destId-1),city);
     }
 }
