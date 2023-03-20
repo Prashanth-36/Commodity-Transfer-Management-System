@@ -2,6 +2,7 @@ package View;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import Objects.*;
 public class View {
@@ -87,9 +88,22 @@ public class View {
         System.out.print("Enter driver id: ");
         int id=sc.nextInt();
         sc.nextLine();
-        printResultSet(destinations);
-        System.out.print("Enter Destination: ");
-        String destination=sc.nextLine();
-        return new Delivery(id,destination,city);
+//        printResultSet(destinations);
+        ArrayList<String> dest=new ArrayList<>();
+        System.out.println("   DESTINATIONS|");
+        while (destinations.next()){
+            String s=destinations.getString(1);
+            dest.add(s);
+            System.out.println(dest.size()+"  "+s);
+        }
+        System.out.print("Enter Destination id: ");
+        int destId=sc.nextInt();
+        while (destId<1 || destId>dest.size()){
+            System.out.println("Enter valid choice.");
+            System.out.print("Enter Destination id: ");
+            destId=sc.nextInt();
+        }
+//        String destination=sc.nextLine();
+        return new Delivery(id,dest.get(destId-1),city);
     }
 }
