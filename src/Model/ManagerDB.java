@@ -3,6 +3,8 @@ import Objects.SupervisorDetails;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
 public class ManagerDB extends SupervisorDB{
     Statement stmt = DBConnection.getStatement();
     public void addSupervisor(SupervisorDetails supervisor) throws SQLException {
@@ -47,5 +49,17 @@ public class ManagerDB extends SupervisorDB{
         System.out.println("************************************************DELIVERY REPORT************************************************");
         return stmt.executeQuery("SELECT * FROM ORDERS");
     }
+    public ResultSet generateDeliveryReport(String branch) throws SQLException {
+        System.out.println("************************************************DELIVERY REPORT************************************************");
+        return stmt.executeQuery("SELECT * FROM ORDERS WHERE BRANCH='"+branch+"'");
+    }
 
+    public ArrayList<String> getBranches() throws SQLException {
+        ResultSet r=stmt.executeQuery("SELECT DISTINCT BRANCH FROM ORDERS");
+        ArrayList<String> branch=new ArrayList<>();
+        while (r.next()){
+            branch.add(r.getString(1));
+        }
+        return branch;
+    }
 }

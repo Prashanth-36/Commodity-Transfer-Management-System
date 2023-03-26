@@ -6,7 +6,9 @@ import Objects.Order;
 import Objects.SupervisorDetails;
 import View.View;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
+
 public class Manager extends User{
     ManagerDB manager;
     View view;
@@ -72,6 +74,7 @@ public class Manager extends User{
     private void removeSupervisor() throws SQLException {
         view.printResultSet(manager.getSupervisor());
         int id=view.getRemoveId();
+
         manager.removeSupervisor(id);
     }
 
@@ -91,6 +94,15 @@ public class Manager extends User{
     }
 
     private void generateDeliveryReport() throws SQLException {
-        view.printResultSet(manager.generateDeliveryReport());
+        System.out.println("1.Full Report\n2.Branch Report");
+        int ch=sc.nextInt();
+        switch (ch){
+            case 1: view.printResultSet(manager.generateDeliveryReport());break;
+            case 2:
+                ArrayList<String> branches=manager.getBranches();
+                String branch=view.getBranch(branches);
+                view.printResultSet(manager.generateDeliveryReport(branch));
+                break;
+        }
     }
 }

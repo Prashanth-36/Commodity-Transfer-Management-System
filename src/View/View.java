@@ -104,4 +104,17 @@ public class View {
         }
         return new Delivery(id,dest.get(destId-1),city);
     }
+
+    public String  getBranch(ArrayList<String> branches) {
+        for (int i = 0; i < branches.size(); i++) {
+            System.out.println((i+1)+" "+branches.get(i));
+        }
+        System.out.print("Enter the Branch id: ");
+        int ch=sc.nextInt();
+        while (ch>branches.size()||ch<1){
+            System.out.print("Enter correct choise: ");
+            ch=sc.nextInt();
+        }
+        return branches.get(ch-1);
+    }
 }
